@@ -1,0 +1,17 @@
+:root {
+  &.light {
+    --clr-background-body: hsla(0, 0%, 98%, 1);
+    --clr-background-header: hsla(0, 0%, 100%, 1);
+
+    --clr-text: hsla(200, 15%, 8%, 1);
+  }
+
+  &.dark {
+    --clr-background-body: hsla(207, 26%, 17%, 1);
+    --clr-background-header: hsla(209, 23%, 22%, 1);
+
+
+    /* text */
+    --clr-text: hsla(0, 0%, 100%, 1);
+  }
+}

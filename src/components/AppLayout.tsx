@@ -1,9 +1,11 @@
 import { Outlet } from 'react-router';
+import NavBar from './NavBar/NavBar';
+
 
 const AppLayout = () => {
   return (
     <>
-      <header>Header</header>
+      <NavBar />
       <Outlet />
       <footer>footer</footer>
     </>
