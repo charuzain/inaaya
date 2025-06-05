@@ -1,0 +1,28 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Classic White T-Shirt",
+      "category": "Tops",
+      "price": 19.99,
+      "sizes": {
+        "s": 10,
+        "m": 15,
+        "l": 8,
+        "xl": 5,
+        "xxl": 3
+      },
+      "bestseller": true,
+      "new": false,
+      "onSale": true,
+      "fabric": "100% Cotton",
+      "images": {
+        "main": "https://www.pexels.com/photo/woman-in-white-t-shirt-123456/",
+        "side1": "https://www.pexels.com/photo/close-up-of-t-shirt-fabric-234567/",
+        "side2": "https://www.pexels.com/photo/t-shirt-on-hanger-345678/",
+        "side3": "https://www.pexels.com/photo/model-wearing-casual-top-456789/"
+      },
+      "description": "A classic white t-shirt made from 100% cotton, perfect for everyday wear."
+    }
+  ]
+}
