@@ -1,12 +1,12 @@
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
+import './index.css';
 import AppLayout from './components/AppLayout';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import AboutPage from './pages/AboutPage';
 import CartPage from './pages/CartPage';
+import { useEffect } from 'react';
+import { useAppSelector } from './app/hooks';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +35,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const { theme } = useAppSelector((state) => state.theme);
+  useEffect(() => {
+    document.documentElement.classList.remove('dark', 'light');
+    document.documentElement.classList.add(theme);
+  }, [theme]);
   return <RouterProvider router={router} />;
 }
 
