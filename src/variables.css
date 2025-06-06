@@ -1,17 +1,37 @@
 :root {
   &.light {
-    --clr-background-body: hsla(0, 0%, 98%, 1);
-    --clr-background-header: hsla(0, 0%, 100%, 1);
-
+    --clr-background-body: #f3ebd7;
+    --clr-background-header: #ecdec1;
     --clr-text: hsla(200, 15%, 8%, 1);
+    --clr-background-logo: hsla(231, 36%, 63%, 1);
+
+    /* text color */
+    --clr-logo: hsla(231, 28%, 7%, 1);
+    --clr-link: hsl(33, 76%, 8%);
+    --clr-card-quantity: hsla(0, 0%, 100%, 1);
   }
 
   &.dark {
     --clr-background-body: hsla(207, 26%, 17%, 1);
     --clr-background-header: hsla(209, 23%, 22%, 1);
 
-
+    --clr-background-logo: hsla(252, 94%, 67%, 1);
     /* text */
     --clr-text: hsla(0, 0%, 100%, 1);
+    --clr-logo: hsla(0, 0%, 100%, 1);
+    --clr-card-quantity:hsla(200, 15%, 8%, 1)
   }
+
+  --icon-size: 26px;
 }
+
+/* --primary-color-4: #fcf7ee;
+--natural-color-800: #231605;
+--natural-color-500: #494949;
+--primary-color-2: #ecdec1;
+--natural-color-900: black;
+--natural-color-100: #fff;
+--primary-color-1: #ece4d9;
+--natural-color-200: #f3ebd7;
+--primary-color-3: #f5ecd9;
+} */

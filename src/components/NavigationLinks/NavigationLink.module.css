@@ -1,0 +1,40 @@
+.nav {
+  /* border: 2px solid red; */
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+.nav-item {
+  display: flex;
+}
+
+.nav-link {
+  color: var(--clr-link);
+  padding: 0.5rem;
+  transition: all 0.3s ease-out;
+  position: relative;
+  transition: all 0.3 ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  width: 50%;
+  height: 1px;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.nav-link:hover::after ,.nav-link:active::after {
+  background-color: var(--clr-logo);
+}
+
+.nav-link:hover {
+  color: var(--clr-logo);
+  transform: translateY(-5px);
+}

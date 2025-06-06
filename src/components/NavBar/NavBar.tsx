@@ -1,38 +1,25 @@
-import { FaMoon } from 'react-icons/fa';
-import { FaRegMoon } from 'react-icons/fa6';
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { setTheme } from '../../slice/themeSlice';
+import CartIcon from '../CartIcon/CartIcon';
+import FavuoriteIcon from '../FaviroteIcon/FavuoriteIcon';
+import NavigationLinks from '../NavigationLinks/NavigationLinks';
+import Theme from '../Theme/Theme';
+import styles from './NavBar.module.css';
 
 const NavBar = () => {
-  const { theme } = useAppSelector((state) => state.theme);
-  console.log(theme);
-
-  const dispatch = useAppDispatch();
-  const themeHandler = () => {
-    if (theme === 'dark') {
-      dispatch(setTheme('light'));
-    } else {
-      dispatch(setTheme('dark'));
-    }
-  };
-
   return (
-    <header>
-      <div>
-        <span>Inaaya</span>
-        <span></span>
-      </div>
-      <nav>
-        <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Shop</li>
-        </ul>
-      </nav>
-      <button onClick={themeHandler}>
-        {theme === 'light' ? <FaMoon /> : <FaRegMoon />}
-      </button>
-    </header>
+    <div className={styles['header-container']}>
+      <header className={`wrapper ${styles['header']}`}>
+        <div className={styles['logo-box']}>
+          <span className={styles['brand-name']}>Inaaya</span>
+          <span className={styles['circle']}></span>
+        </div>
+        <NavigationLinks />
+        <div className={styles['nav-icons']}>
+          <Theme />
+          <CartIcon />
+          <FavuoriteIcon />
+        </div>
+      </header>
+    </div>
   );
 };
 
