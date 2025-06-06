@@ -4,12 +4,13 @@ import styles from './CartIcon.module.css';
 const CartIcon = () => {
   const numItem: number = 0;
   return (
-    <div>
+    <div className={styles['cart']}>
       {numItem === 0 ? (
         <IoCartOutline className={styles['nav-icon']} />
       ) : (
         <IoCart className={styles['nav-icon']} />
       )}
+      <span className={styles['cart-quantity']}>1</span>
     </div>
   );
 };
