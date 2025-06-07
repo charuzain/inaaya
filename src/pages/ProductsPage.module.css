@@ -1,0 +1,21 @@
+.product-page {
+  border: 2px solid red;
+  display: flex;
+  gap: 3rem;
+}
+
+.result-section {
+  border: 2px solid green;
+  flex: 1;
+}
+
+.result-header {
+  display: flex;
+  border: 2px solid red;
+  justify-content: space-between;
+}
+.list-wrapper{
+ display: grid;
+ grid-template-columns: repeat(3,1fr);
+ gap: 3rem;
+}
