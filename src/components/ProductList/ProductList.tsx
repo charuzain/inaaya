@@ -20,15 +20,15 @@ const ProductList = () => {
     <>
       {products.map((product) => (
         <article key={product.id} className={styles['product-card']}>
-          <div>
+          <div className={styles['image-container']}>
             <img
               src={`/src${product.image} `}
               alt={product.name}
               className={styles['product-image']}
             />
           </div>
-          <p>{product.name}</p>
-          <p>{`$${product.price}`}</p>
+          <p className={styles['product-title']}>{product.name}</p>
+          <p className={styles['product-price']}>{`$${product.price}`}</p>
         </article>
       ))}
     </>
