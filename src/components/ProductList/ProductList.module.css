@@ -3,11 +3,13 @@
   overflow: hidden;
   /* border: 2px solid black; */
   text-align: center;
+  position: relative;
 }
 .image-container {
   /* border: 2px solid black; */
   height: 25rem;
   margin-bottom: 1.24rem;
+  position: relative;
 }
 .product-image {
   width: 100%;
@@ -33,3 +35,39 @@
   cursor: pointer;
 }
 
+.favourite-icon {
+  position: absolute;
+  z-index: 1000;
+  right: 10px;
+  top: 10px;
+  height: 25px;
+  width: 25px;
+}
+.view-btn {
+  position: absolute;
+  z-index: 999;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  border-radius: 0px;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+.image-container:hover .view-btn {
+  animation: slideUpGrow 0.4s ease-out forwards;
+
+}
+
+@keyframes slideUpGrow {
+  0% {
+    transform: translateX(100%) scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
