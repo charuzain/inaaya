@@ -28,12 +28,14 @@ export interface ProductState {
   products: Product[];
   status: Status;
   error: null | string;
+  selectedProduct: null | Product;
 }
 
 const initialState: ProductState = {
   products: [],
   status: 'idle',
   error: null,
+  selectedProduct: null,
 };
 
 export const fetchProducts = createAsyncThunk<
@@ -56,7 +58,14 @@ export const fetchProducts = createAsyncThunk<
 export const productSlice = createSlice({
   name: 'product',
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedProduct: (state, action) => {
+      state.selectedProduct = action.payload;
+    },
+    clearSelectedProduct: (state) => {
+      state.selectedProduct = null;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
@@ -73,5 +82,5 @@ export const productSlice = createSlice({
       });
   },
 });
-
+export const { setSelectedProduct, clearSelectedProduct } = productSlice.actions;
 export default productSlice.reducer;
