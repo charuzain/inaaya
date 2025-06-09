@@ -6,23 +6,27 @@ import ProductList from '../components/ProductList/ProductList';
 import styles from './ProductsPage.module.css';
 
 const ProductsPage = () => {
+  
   return (
-    <main className={styles['product-page']}>
-      <div className={styles['filters-wrapper']}>
-        <SearchBar />
-        <CategoryDropDown />
-        <PriceFilter />
-      </div>
-      <div className={styles['result-section']}>
-        <div className={styles['result-header']}>
-          <p className={styles['result-count']}>0 product found</p>
-          <SortFilter />
+    <>
+      <main className={styles['product-page']}>
+        <div className={styles['filters-wrapper']}>
+          <SearchBar />
+          <CategoryDropDown />
+          <PriceFilter />
         </div>
-        <div className={styles['list-wrapper']}>
-          <ProductList />
+        <div className={styles['result-section']}>
+          <div className={styles['result-header']}>
+            <p className={styles['result-count']}>0 product found</p>
+            <SortFilter />
+          </div>
+          <div className={styles['list-wrapper']}>
+            <ProductList />
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+
+    </>
   );
 };
 

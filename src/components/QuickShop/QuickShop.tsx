@@ -32,7 +32,6 @@ const QuickShop = () => {
   };
 
   const showStock = (key: keyof Size): void => {
-
     if (!selectedProduct) {
       return;
     }
@@ -41,6 +40,11 @@ const QuickShop = () => {
     setSelectedQty(1);
     setSizeSelected(true);
   };
+
+  console.log('====');
+  console.log(`stock is ${stock}`);
+  console.log(`selectedQty is ${selectedQty}`);
+  console.log(`sizeSelected is ${sizeSelected}`);
 
   if (!selectedProduct) return null;
 
@@ -91,33 +95,41 @@ const QuickShop = () => {
                 )
               )}
             </div>
+            <div>
+              <span className={styles['stock-status']}>
+                {stock !== null &&
+                  (stock !== 0 ? 'Available' : 'Size Not Available')}
+              </span>
+              {stock !== null && stock !== 0 && (
+                <p className={styles['stock-count']}>
+                  {stock} item(s) available in selected size
+                </p>
+              )}
+            </div>
           </div>
-
-          <p className={styles['stock-status']}>
-            {stock !== null && (stock !== 0 ? 'Available' : 'Not Available')}
-          </p>
-
-          {stock !== null && stock !== 0 && (
-            <span className={styles['stock-count']}>{stock}</span>
-          )}
 
           {/* buttons */}
-          <div className={styles['action-buttons']}>
-            <button
-              className={styles['decrease-button']}
-              onClick={decreaseQtyHandler}
-            >
-              -
-            </button>
-            <span className={styles['quantity']}>{stock ? selectedQty : 0}</span>
-            <button
-              className={styles['add-button']}
-              onClick={increaseQtyHandler}
-              disabled={selectedQty === stock}
-            >
-              +
-            </button>
-          </div>
+          {stock === 0 ? (
+            <span></span>
+          ) : (
+            <div className={styles['action-buttons']}>
+              <button
+                className={styles['decrease-button']}
+                onClick={decreaseQtyHandler}
+              >
+                -
+              </button>
+
+              <span className={styles['quantity']}>{selectedQty}</span>
+              <button
+                className={styles['add-button']}
+                onClick={increaseQtyHandler}
+                disabled={selectedQty === stock}
+              >
+                +
+              </button>
+            </div>
+          )}
 
           {/* Add to cart button */}
           <div className={styles['btn-wrapper']}>
@@ -128,7 +140,7 @@ const QuickShop = () => {
               className={styles['btn']}
               disabled={!sizeSelected || stock === 0}
             >
-             Add to cart
+              Add to cart
             </button>
           </div>
         </div>

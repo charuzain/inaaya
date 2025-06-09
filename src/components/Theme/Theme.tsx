@@ -6,7 +6,6 @@ import styles from './Theme.module.css';
 
 const Theme = () => {
   const { theme } = useAppSelector((state) => state.theme);
-  console.log(theme);
 
   const dispatch = useAppDispatch();
   const themeHandler = () => {

@@ -21,7 +21,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   color: var(--clr-text);
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
 }
 
 button {
@@ -31,7 +31,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  /* background-color: #1a1a1a; */
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -44,17 +44,16 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-
 .wrapper {
-  /* border: 2px solid blue; */
+  border: 2px solid blue;
   margin: 0 auto;
   max-width: 1280px;
   /* padding: 2rem; */
 }
 
-li{
+li {
   list-style-type: none;
 }
-a{
+a {
   text-decoration: none;
 }

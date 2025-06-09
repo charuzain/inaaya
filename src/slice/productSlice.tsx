@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 export type Size = {
   s: number;
@@ -59,12 +59,12 @@ export const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
-    setSelectedProduct: (state, action) => {
+    setSelectedProduct: (state, action: PayloadAction<Product>) => {
       state.selectedProduct = action.payload;
     },
     clearSelectedProduct: (state) => {
       state.selectedProduct = null;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
