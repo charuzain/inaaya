@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import type { Size } from '../../slice/productSlice';
+// import type { Size } from '../../slice/productSlice';
+import type { Sizekey } from '../../types/cartItem';
 
 import { clearSelectedProduct } from '../../slice/productSlice';
 
 // css
 import styles from './QuickShop.module.css';
+import { addToCart } from '../../slice/cartSlice';
 
 const QuickShop = () => {
   const { selectedProduct } = useAppSelector((state) => state.product);
@@ -13,14 +15,13 @@ const QuickShop = () => {
   const dispatch = useAppDispatch();
 
   const closeIconHandler = () => {
-    setStock(null);
     dispatch(clearSelectedProduct());
   };
 
-  const [stock, setStock] = useState<number | null>(null);
-
+  const [selectedSize, setSelectedSize] = useState<Sizekey | null>(null);
   const [selectedQty, setSelectedQty] = useState<number>(1);
-  const [sizeSelected, setSizeSelected] = useState<boolean>(false);
+  const stock = selectedSize ? selectedProduct?.sizes[selectedSize] ?? 0 : 0;
+
   const increaseQtyHandler = (): void => {
     setSelectedQty(selectedQty + 1);
   };
@@ -31,20 +32,31 @@ const QuickShop = () => {
     }
   };
 
-  const showStock = (key: keyof Size): void => {
-    if (!selectedProduct) {
-      return;
-    }
-    const quantity: number = selectedProduct?.sizes[key];
-    setStock(quantity);
+  const showStock = (key: Sizekey): void => {
+    setSelectedSize(key);
     setSelectedQty(1);
-    setSizeSelected(true);
   };
 
-  console.log('====');
-  console.log(`stock is ${stock}`);
-  console.log(`selectedQty is ${selectedQty}`);
-  console.log(`sizeSelected is ${sizeSelected}`);
+  const addToCartHandler = () => {
+    if (!selectedSize || !stock || !selectedProduct) {
+      return;
+    }
+    dispatch(
+      addToCart({
+        id: selectedProduct?.id,
+        name: selectedProduct?.name,
+        price: selectedProduct.price,
+        image: selectedProduct.image,
+        size: selectedSize,
+        quantity: selectedQty,
+      })
+    );
+  };
+
+  // console.log('====');
+  // console.log(`stock is ${stock}`);
+  // console.log(`selectedQty is ${selectedQty}`);
+  // console.log(`sizeSelected is ${sizeSelected}`);
 
   if (!selectedProduct) return null;
 
@@ -75,32 +87,28 @@ const QuickShop = () => {
         </div>
 
         <div className={styles['product-info']}>
-          {/* <div className={styles['product-details']}> */}
           <h1 className={styles['product-name']}>{selectedProduct.name}</h1>
           <p className={styles['product-price']}>${selectedProduct.price}</p>
-          {/* </div> */}
-
           <div className={styles['size-options']}>
             <span>Size</span>
             <div className={styles['btn-list']}>
-              {(Object.keys(selectedProduct.sizes) as (keyof Size)[]).map(
-                (size) => (
-                  <button
-                    key={size}
-                    onClick={() => showStock(size)}
-                    className={styles['size-button']}
-                  >
-                    {size.toUpperCase()}
-                  </button>
-                )
-              )}
+              {(Object.keys(selectedProduct.sizes) as Sizekey[]).map((size) => (
+                <button
+                  key={size}
+                  onClick={() => showStock(size)}
+                  className={styles['size-button']}
+                >
+                  {size.toUpperCase()}
+                </button>
+              ))}
             </div>
             <div>
               <span className={styles['stock-status']}>
-                {stock !== null &&
+                {/* if size is selected display show available or not  */}
+                {selectedSize &&
                   (stock !== 0 ? 'Available' : 'Size Not Available')}
               </span>
-              {stock !== null && stock !== 0 && (
+              {selectedSize && stock !== 0 && (
                 <p className={styles['stock-count']}>
                   {stock} item(s) available in selected size
                 </p>
@@ -110,12 +118,13 @@ const QuickShop = () => {
 
           {/* buttons */}
           {stock === 0 ? (
-            <span></span>
+            <span>Out of Stock</span>
           ) : (
             <div className={styles['action-buttons']}>
               <button
                 className={styles['decrease-button']}
                 onClick={decreaseQtyHandler}
+                disabled={!selectedSize || selectedQty === 1}
               >
                 -
               </button>
@@ -124,7 +133,7 @@ const QuickShop = () => {
               <button
                 className={styles['add-button']}
                 onClick={increaseQtyHandler}
-                disabled={selectedQty === stock}
+                disabled={selectedQty === stock || !selectedSize}
               >
                 +
               </button>
@@ -133,14 +142,15 @@ const QuickShop = () => {
 
           {/* Add to cart button */}
           <div className={styles['btn-wrapper']}>
-            {!sizeSelected && (
+            {!selectedSize && (
               <span className={styles['btn-msg']}>Select a size to add</span>
             )}
             <button
               className={styles['btn']}
-              disabled={!sizeSelected || stock === 0}
+              disabled={!selectedSize || stock === 0}
+              onClick={addToCartHandler}
             >
-              Add to cart
+              {stock === 0 ? 'Out of Stock' : 'Add to Cart'}
             </button>
           </div>
         </div>
