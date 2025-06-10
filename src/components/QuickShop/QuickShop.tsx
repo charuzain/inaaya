@@ -1,26 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-// import type { Size } from '../../slice/productSlice';
 import type { Sizekey } from '../../types/cartItem';
-
 import { clearSelectedProduct } from '../../slice/productSlice';
+import { addToCart } from '../../slice/cartSlice';
 
 // css
 import styles from './QuickShop.module.css';
-import { addToCart } from '../../slice/cartSlice';
 
 const QuickShop = () => {
+  const [selectedSize, setSelectedSize] = useState<Sizekey | null>(null);
+  const [selectedQty, setSelectedQty] = useState<number>(1);
+
   const { selectedProduct } = useAppSelector((state) => state.product);
 
   const dispatch = useAppDispatch();
 
+  const stock = selectedSize ? selectedProduct?.sizes[selectedSize] ?? 0 : 0;
+
   const closeIconHandler = () => {
     dispatch(clearSelectedProduct());
   };
-
-  const [selectedSize, setSelectedSize] = useState<Sizekey | null>(null);
-  const [selectedQty, setSelectedQty] = useState<number>(1);
-  const stock = selectedSize ? selectedProduct?.sizes[selectedSize] ?? 0 : 0;
 
   const increaseQtyHandler = (): void => {
     setSelectedQty(selectedQty + 1);
@@ -51,6 +50,7 @@ const QuickShop = () => {
         quantity: selectedQty,
       })
     );
+    dispatch(clearSelectedProduct());
   };
 
   // console.log('====');
@@ -150,9 +150,7 @@ const QuickShop = () => {
               disabled={!selectedSize || stock === 0}
               onClick={addToCartHandler}
             >
-              {selectedSize && stock === 0
-                ? 'Out of Stock'
-                : 'Add to Cart'}
+              {selectedSize && stock === 0 ? 'Out of Stock' : 'Add to Cart'}
             </button>
           </div>
         </div>
