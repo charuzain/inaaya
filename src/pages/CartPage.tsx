@@ -1,10 +1,12 @@
-import { useAppSelector } from '../app/hooks';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { Link } from 'react-router';
 import styles from './CartPage.module.css';
+import { removeFromCart } from '../slice/cartSlice';
 
 const CartPage = () => {
   const { items } = useAppSelector((state) => state.cart);
   console.log(items.length);
+  const dispatch = useAppDispatch();
 
   if (items.length === 0) {
     return <p>There is not item in your bag !!</p>;
@@ -54,7 +56,16 @@ const CartPage = () => {
                 <div className={styles['item-price']}>{`$ ${(
                   product.price * product.quantity
                 ).toFixed(2)}`}</div>
-                <button className={styles['remove-btn']}>Remove</button>
+                <button
+                  className={styles['remove-btn']}
+                  onClick={() =>
+                    dispatch(
+                      removeFromCart({ id: product.id, size: product.size })
+                    )
+                  }
+                >
+                  Remove
+                </button>
               </li>
             ))}
           </ul>
