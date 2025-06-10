@@ -1,5 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { type CartItem } from '../types/cartItem';
+import { type Sizekey } from '../types/cartItem';
 
 export interface CartState {
   items: CartItem[];
@@ -26,8 +27,11 @@ export const cartSlice = createSlice({
         state.items.push(action.payload);
       }
     },
-    removeFromCart: (state , action) => {
-
+    removeFromCart: (state, action) => {
+      const { id, size } = action.payload;
+      state.items = state.items.filter(
+        (item) => !(item.id === id && item.size === size)
+      );
     },
     clearCart: (state) => {
       state.items = [];
