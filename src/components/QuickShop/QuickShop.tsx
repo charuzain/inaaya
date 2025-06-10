@@ -117,7 +117,7 @@ const QuickShop = () => {
           </div>
 
           {/* buttons */}
-          {stock === 0 ? (
+          {selectedSize && stock === 0 ? (
             <span>Out of Stock</span>
           ) : (
             <div className={styles['action-buttons']}>
@@ -150,7 +150,9 @@ const QuickShop = () => {
               disabled={!selectedSize || stock === 0}
               onClick={addToCartHandler}
             >
-              {stock === 0 ? 'Out of Stock' : 'Add to Cart'}
+              {selectedSize && stock === 0
+                ? 'Out of Stock'
+                : 'Add to Cart'}
             </button>
           </div>
         </div>
