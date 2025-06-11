@@ -11,7 +11,7 @@ const QuickShop = () => {
   const [selectedSize, setSelectedSize] = useState<Sizekey | null>(null);
   const [selectedQty, setSelectedQty] = useState<number>(1);
 
-  const { selectedProduct } = useAppSelector((state) => state.product);
+  const { selectedProduct  } = useAppSelector((state) => state.product);
 
   const dispatch = useAppDispatch();
 
