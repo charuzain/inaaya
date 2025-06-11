@@ -70,6 +70,7 @@ const QuickShop = () => {
         image: selectedProduct.image,
         size: selectedSize,
         quantity: selectedQty,
+        stock: stock,
       })
     );
     dispatch(clearSelectedProduct());
@@ -134,7 +135,10 @@ const QuickShop = () => {
                 <p className={styles['stock-count']}>
                   {stock} item(s) available in selected size .
                   {alreadyInCart > 0 && availableStock > 0 && (
-                    <span> `You already have ${alreadyInCart} in cart.`</span>
+                    <span>
+                      {' '}
+                      {`You already have ${alreadyInCart} item(s) in cart.`}
+                    </span>
                   )}
                 </p>
               )}
@@ -144,7 +148,9 @@ const QuickShop = () => {
           {/* buttons */}
           {selectedSize && stock === 0 && <span>Out of Stock</span>}
           {selectedSize && stock !== 0 && availableStock <= 0 && (
-            <span>You already added all available stock of selected size to cart.</span>
+            <span>
+              You already added all available stock of selected size to cart.
+            </span>
           )}
 
           {selectedSize && stock > 0 && availableStock > 0 && (

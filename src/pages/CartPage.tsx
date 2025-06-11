@@ -1,7 +1,12 @@
 import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { Link } from 'react-router';
 import styles from './CartPage.module.css';
-import { removeFromCart } from '../slice/cartSlice';
+import {
+  decreaseQuantity,
+  increaseQuantity,
+  removeFromCart,
+} from '../slice/cartSlice';
+
+import { RiDeleteBin2Line } from 'react-icons/ri';
 
 const CartPage = () => {
   const { items } = useAppSelector((state) => state.cart);
@@ -42,11 +47,29 @@ const CartPage = () => {
                     </button>
                   </div>
                 </div>
-
+                {/* buttons */}
                 <div className={styles['btn-container']}>
-                  <button className={styles['increase-btn']}> - </button>
+                  <button
+                    className={styles['increase-btn']}
+                    onClick={() =>
+                      dispatch(
+                        decreaseQuantity({ id: product.id, size: product.size })
+                      )
+                    }
+                  >
+                    {product.quantity === 1 ? <RiDeleteBin2Line className={styles['delete-icon']} /> :'-'}
+                  </button>
                   <span>{product.quantity}</span>
-                  <button className={styles['decrease-btn']}>+</button>
+                  <button
+                    className={styles['decrease-btn']}
+                    onClick={() =>
+                      dispatch(
+                        increaseQuantity({ id: product.id, size: product.size })
+                      )
+                    }
+                  >
+                    +
+                  </button>
                 </div>
 
                 <div

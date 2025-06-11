@@ -6,7 +6,7 @@ export type Size = {
   xxl: number;
 };
 
-export type Sizekey = keyof Size
+export type Sizekey = keyof Size;
 
 export interface CartItem {
   id: number;
@@ -15,4 +15,5 @@ export interface CartItem {
   image: string;
   size: Sizekey;
   quantity: number;
+  stock: number;
 }
