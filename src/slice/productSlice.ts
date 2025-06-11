@@ -3,6 +3,9 @@ import {
   createSlice,
   type PayloadAction,
 } from '@reduxjs/toolkit';
+import { clearCart } from './cartSlice';
+
+import type { AppDispatch, RootState } from '../app/store';
 
 export type Size = {
   s: number;
@@ -59,24 +62,29 @@ export const fetchProducts = createAsyncThunk<
   }
 });
 
-export const updateProducts = createAsyncThunk(
-  'update/products',
-  async (_, { getState, rejectWithValue }) => {
-    const state = getState();
-    const orderedItems = state.cart.items;
-    console.log(state);
-    console.log(orderedItems);
+export const updateProducts = createAsyncThunk<
+  void,
+  void,
+  { state: RootState; dispatch: AppDispatch; rejectWithValue: string }
+>('update/products', async (_, { getState, dispatch, rejectWithValue }) => {
+  const state = getState();
+  const orderedItems = state.cart.items;
 
-    try {
-      if (orderedItems.length > 0) {
-        for (let item of orderedItems) {
-          const res = await fetch(`http://localhost:3000/products/${item.id}`);
-          const product = await res.json();
-          console.log(product);
+  try {
+    if (orderedItems.length > 0) {
+      for (const item of orderedItems) {
+        const res = await fetch(`http://localhost:3000/products/${item.id}`);
+        if (!res.ok) {
+          return rejectWithValue(`Failed to fetch product ${item.id}`);
+        }
+        const product = await res.json();
+
+        if (product.sizes[item.size] >= item.quantity) {
           const updatedSize = {
             ...product.sizes,
             [item.size]: product.sizes[item.size] - item.quantity,
           };
+
           await fetch(`http://localhost:3000/products/${item.id}`, {
             method: 'PATCH',
             headers: {
@@ -84,14 +92,19 @@ export const updateProducts = createAsyncThunk(
             },
             body: JSON.stringify({ sizes: updatedSize }),
           });
+        } else {
+          return rejectWithValue(
+            `Not enough stock available for item ${item.name} in size ${item.size}.`
+          );
         }
       }
-    } catch (error) {
-      console.log(error);
-      return rejectWithValue('Failed to update stock after checkout');
+      dispatch(clearCart());
     }
+  } catch (error) {
+    console.log(error);
+    return rejectWithValue('Failed to update stock after checkout');
   }
-);
+});
 
 export const productSlice = createSlice({
   name: 'product',
