@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import type { Sizekey } from '../../types/cartItem';
+import type { CartItem, Sizekey } from '../../types/cartItem';
 import { clearSelectedProduct } from '../../slice/productSlice';
 import { addToCart } from '../../slice/cartSlice';
 
@@ -17,6 +17,24 @@ const QuickShop = () => {
 
   const stock = selectedSize ? selectedProduct?.sizes[selectedSize] ?? 0 : 0;
 
+  const cartItems: CartItem | undefined = useAppSelector((state) =>
+    state.cart.items.find(
+      (item) => item.id === selectedProduct.id && item.size === selectedSize
+    )
+  );
+
+  let alreadyInCart: number;
+
+  if (cartItems) {
+    alreadyInCart = cartItems.quantity;
+  } else {
+    alreadyInCart = 0;
+  }
+
+  const availableStock = stock - alreadyInCart;
+  // if (stock <= selectedQty + alreadyInCart) {
+  //   setSelectedQty(0);
+  // }
   const closeIconHandler = () => {
     dispatch(clearSelectedProduct());
   };
@@ -38,6 +56,10 @@ const QuickShop = () => {
 
   const addToCartHandler = () => {
     if (!selectedSize || !stock || !selectedProduct) {
+      return;
+    }
+
+    if (selectedQty > availableStock) {
       return;
     }
     dispatch(
@@ -110,16 +132,22 @@ const QuickShop = () => {
               </span>
               {selectedSize && stock !== 0 && (
                 <p className={styles['stock-count']}>
-                  {stock} item(s) available in selected size
+                  {stock} item(s) available in selected size .
+                  {alreadyInCart > 0 && availableStock > 0 && (
+                    <span> `You already have ${alreadyInCart} in cart.`</span>
+                  )}
                 </p>
               )}
             </div>
           </div>
 
           {/* buttons */}
-          {selectedSize && stock === 0 ? (
-            <span>Out of Stock</span>
-          ) : (
+          {selectedSize && stock === 0 && <span>Out of Stock</span>}
+          {selectedSize && stock !== 0 && availableStock <= 0 && (
+            <span>You already added all available stock of selected size to cart.</span>
+          )}
+
+          {selectedSize && stock > 0 && availableStock > 0 && (
             <div className={styles['action-buttons']}>
               <button
                 className={styles['decrease-button']}
@@ -133,7 +161,11 @@ const QuickShop = () => {
               <button
                 className={styles['add-button']}
                 onClick={increaseQtyHandler}
-                disabled={selectedQty === stock || !selectedSize}
+                disabled={
+                  selectedQty === stock ||
+                  !selectedSize ||
+                  stock <= selectedQty + alreadyInCart
+                }
               >
                 +
               </button>
