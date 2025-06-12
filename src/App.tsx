@@ -7,6 +7,7 @@ import AboutPage from './pages/AboutPage';
 import CartPage from './pages/CartPage';
 import { useEffect } from 'react';
 import { useAppSelector } from './app/hooks';
+import OrderConfirmationPage from './pages/OrderConfirmationPage/OrderConfirmationPage';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: '/cart',
         element: <CartPage />,
+      },
+      {
+        path: '/confirmation',
+        element: <OrderConfirmationPage />,
       },
     ],
   },
