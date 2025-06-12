@@ -10,12 +10,15 @@ import styles from './QuickShop.module.css';
 const QuickShop = () => {
   const [selectedSize, setSelectedSize] = useState<Sizekey | null>(null);
   const [selectedQty, setSelectedQty] = useState<number>(1);
+  const [isHovered, setIsHovered] = useState(false);
 
-  const { selectedProduct  } = useAppSelector((state) => state.product);
+  const { selectedProduct } = useAppSelector((state) => state.product);
 
   const dispatch = useAppDispatch();
 
   const stock = selectedSize ? selectedProduct?.sizes[selectedSize] ?? 0 : 0;
+
+  console.log(`stock is ${stock}`);
 
   const cartItems: CartItem | undefined = useAppSelector((state) =>
     state.cart.items.find(
@@ -128,20 +131,24 @@ const QuickShop = () => {
             <div>
               <span className={styles['stock-status']}>
                 {/* if size is selected display show available or not  */}
-                {selectedSize &&
-                  (stock !== 0 ? 'Available' : 'Size Not Available')}
+                {/* {selectedSize &&
+                  (stock !== 0 
+                    ? 'Available'
+                    : 'Size Not Available')} */}
               </span>
-              {selectedSize && stock !== 0 && (
-                <p className={styles['stock-count']}>
-                  {stock} item(s) available in selected size .
-                  {alreadyInCart > 0 && availableStock > 0 && (
-                    <span>
-                      {' '}
-                      {`You already have ${alreadyInCart} item(s) in cart.`}
-                    </span>
+              {selectedSize &&
+                stock !== 0 &&
+                (
+                    <p className={styles['stock-count']}>
+                      {stock} item(s) available in selected size .
+                      {alreadyInCart > 0 && availableStock > 0 && (
+                        <span>
+                          {' '}
+                          {`You already have ${alreadyInCart} item(s) in cart.`}
+                        </span>
+                      )}
+                    </p>
                   )}
-                </p>
-              )}
             </div>
           </div>
 
@@ -183,9 +190,23 @@ const QuickShop = () => {
             {!selectedSize && (
               <span className={styles['btn-msg']}>Select a size to add</span>
             )}
+
+            {/* <button
+              className={styles['btn']}
+              onClick={addToCartHandler}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              {selectedSize && availableStock === 0
+                ? 'Out of Stock'
+                : !selectedSize && isHovered
+                ? 'Select a Size'
+                : 'Add to Cart'}
+            </button> */}
+
             <button
               className={styles['btn']}
-              disabled={!selectedSize || stock === 0}
+              disabled={!selectedSize || stock === 0 || availableStock === 0}
               onClick={addToCartHandler}
             >
               {selectedSize && stock === 0 ? 'Out of Stock' : 'Add to Cart'}
