@@ -63,7 +63,7 @@ export const fetchProducts = createAsyncThunk<
 });
 
 export const updateProducts = createAsyncThunk<
-  void,
+  string,
   void,
   { state: RootState; dispatch: AppDispatch; rejectWithValue: string }
 >('update/products', async (_, { getState, dispatch, rejectWithValue }) => {
@@ -99,6 +99,9 @@ export const updateProducts = createAsyncThunk<
         }
       }
       dispatch(clearCart());
+      return 'Stock updated and cart cleared';
+    } else {
+      return rejectWithValue('No items to update');
     }
   } catch (error) {
     console.log(error);
