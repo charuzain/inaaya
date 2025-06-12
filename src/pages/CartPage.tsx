@@ -5,23 +5,30 @@ import {
   increaseQuantity,
   removeFromCart,
 } from '../slice/cartSlice';
+import { numItem } from '../selectors/cartSelector';
 
 import { RiDeleteBin2Line } from 'react-icons/ri';
-import { updateProducts } from '../slice/productSlice';
+import OrderSummary from '../components/OrderSummary/OrderSummary';
 
 const CartPage = () => {
   const { items } = useAppSelector((state) => state.cart);
+  const { status } = useAppSelector((state) => state.product);
+  const totalNumItem = useAppSelector(numItem);
   const dispatch = useAppDispatch();
 
   if (items.length === 0) {
     return <p>There is not item in your bag !!</p>;
   }
 
+  if (status === 'loading') {
+    return <h1>Updating stock....</h1>;
+  }
+
   return (
     <>
       <div className={styles['cart-page-container']}>
-        <h1 className={styles['cart-title']}>My Bag(10 Items)</h1>
-        <p className={styles['cart-total']}>Est- Order Total - CA $250</p>
+        <h1 className={styles['cart-title']}>My Bag({totalNumItem})</h1>
+        {/* <p className={styles['cart-total']}>Est- Order Total - CA $250</p> */}
         <div className={styles['cart-container']}>
           <section className={styles['cart-item-section']}>
             <ul className={styles['cart-list']}>
@@ -104,12 +111,9 @@ const CartPage = () => {
               ))}
             </ul>
           </section>
-          <section className={styles['summary-section']}>
-            <h2 className={styles['summary-title']}>Order Summary</h2>
-          </section>
+          <OrderSummary />
         </div>
       </div>
-      <button onClick={() => dispatch(updateProducts())}>Place</button>
     </>
   );
 };

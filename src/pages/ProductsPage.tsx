@@ -4,9 +4,11 @@ import PriceFilter from '../components/PriceFilter/PriceFilter';
 import SortFilter from '../components/SortFilter/SortFilter';
 import ProductList from '../components/ProductList/ProductList';
 import styles from './ProductsPage.module.css';
+import { useAppSelector } from '../app/hooks';
 
 const ProductsPage = () => {
-  
+  const { products } = useAppSelector((state) => state.product);
+
   return (
     <>
       <main className={styles['product-page']}>
@@ -17,7 +19,9 @@ const ProductsPage = () => {
         </div>
         <div className={styles['result-section']}>
           <div className={styles['result-header']}>
-            <p className={styles['result-count']}>0 product found</p>
+            <p className={styles['result-count']}>
+              {products.length} product found
+            </p>
             <SortFilter />
           </div>
           <div className={styles['list-wrapper']}>
@@ -25,7 +29,6 @@ const ProductsPage = () => {
           </div>
         </div>
       </main>
-
     </>
   );
 };
