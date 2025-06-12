@@ -8,7 +8,7 @@ const CartIcon = () => {
 
   const navigate = useNavigate();
 
-  const numItem: number =
+const numItem: number =
     items.length === 0 ? 0 : items.reduce((a, c) => a + c.quantity, 0);
 
   return (

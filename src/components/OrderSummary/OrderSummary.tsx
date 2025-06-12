@@ -7,12 +7,13 @@ const OrderSummary = () => {
 
   const { items } = useAppSelector((state) => state.cart);
 
+
   const subTotal: number =
     items.length > 0 ? items.reduce((a, c) => a + c.quantity * c.price, 0) : 0;
   const calculatedTaxes: number = (13 * subTotal) / 100;
   const orderTotal: number = subTotal + calculatedTaxes;
 
-  console.log(subTotal);
+
 
   return (
     <section className={styles['summary-section']}>
