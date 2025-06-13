@@ -23,7 +23,9 @@ const filterSlice = createSlice({
   name: 'filter',
   initialState,
   reducers: {
-    setCategory: () => {},
+    setCategory: (state, action: PayloadAction<string>) => {
+      state.category = action.payload;
+    },
     setSearchTerm: (state, action: PayloadAction<string>) => {
       state.searchTerm = action.payload;
     },

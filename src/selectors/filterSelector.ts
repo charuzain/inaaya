@@ -11,8 +11,8 @@ export const selectSearchTerm = (state: RootState) => state.filter.searchTerm;
 export const selectSort = (state: RootState) => state.filter.sort;
 
 export const filteredProduct = createSelector(
-  [selectAllProducts, selectSearchTerm],
-  (products, searchTerm) :Product[] => {
+  [selectAllProducts, selectSearchTerm, selectCategory],
+  (products, searchTerm, category): Product[] => {
     let productList = [...products];
 
     if (searchTerm) {
@@ -21,6 +21,10 @@ export const filteredProduct = createSelector(
       );
     }
 
-    return productList;
+    return category === 'all'
+      ? productList
+      : productList.filter(
+          (product) => product.category.toLowerCase() === category.toLowerCase()
+        );
   }
 );
