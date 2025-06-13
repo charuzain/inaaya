@@ -1,18 +1,19 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import {
-  fetchProducts,
-  setSelectedProduct,
-} from '../../slice/productSlice';
+import { fetchProducts, setSelectedProduct } from '../../slice/productSlice';
 import { GoHeart, GoHeartFill } from 'react-icons/go';
 
 import styles from './ProductList.module.css';
 import QuickShop from '../QuickShop/QuickShop';
+import type { RootState } from '../../app/store';
+import { filteredProduct } from '../../selectors/filterSelector';
 const ProductList = () => {
-
-  const {products, status, selectedProduct } = useAppSelector(
-    (state) => state.product
+  const {status, selectedProduct } = useAppSelector(
+    (state: RootState) => state.product
   );
+
+  const productList = useAppSelector(filteredProduct);
+  console.log(productList);
 
   const dispatch = useAppDispatch();
 
@@ -20,7 +21,6 @@ const ProductList = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  
   if (status === 'loading') {
     return <p>Loading....</p>;
   }
@@ -29,7 +29,7 @@ const ProductList = () => {
   }
   return (
     <>
-      {products.map((product) => (
+      {productList.map((product) => (
         <article key={product.id} className={styles['product-card']}>
           <GoHeart className={styles['favourite-icon']} />
           <div className={styles['image-container']}>
@@ -49,8 +49,9 @@ const ProductList = () => {
           <p className={styles['product-price']}>{`$${product.price}`}</p>
         </article>
       ))}
-      {selectedProduct && <QuickShop/>}
-    </>)
-}
+      {selectedProduct && <QuickShop />}
+    </>
+  );
+};
 
 export default ProductList;
