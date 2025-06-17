@@ -6,6 +6,7 @@ import {
 import { clearCart } from './cartSlice';
 
 import type { AppDispatch, RootState } from '../app/store';
+import { setMaxPrice } from './filterSlice';
 
 export type Size = {
   s: number;
@@ -49,13 +50,25 @@ export const fetchProducts = createAsyncThunk<
   Product[],
   void,
   { rejectValue: string }
->('fetch/products', async (_, { rejectWithValue }) => {
+>('fetch/products', async (_, { rejectWithValue, dispatch }) => {
   try {
     const res = await fetch('http://localhost:3000/products');
     if (!res.ok) {
       return rejectWithValue('Failed to fetch products');
     }
-    return res.json();
+
+    const data: Product[] = await res.json();
+    // find max price
+
+    let maxPrice: number;
+    if (data.length === 0) {
+      maxPrice = 0;
+    } else {
+      maxPrice = Math.max(...data.map((p) => p.price));
+    }
+    dispatch(setMaxPrice(maxPrice));
+
+    return data;
   } catch (error) {
     console.log(error);
     return rejectWithValue('Something went wrong...!');
