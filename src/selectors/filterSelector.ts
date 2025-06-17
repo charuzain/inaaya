@@ -10,9 +10,17 @@ export const selectSearchTerm = (state: RootState) => state.filter.searchTerm;
 
 export const selectSort = (state: RootState) => state.filter.sort;
 
+export const selectPrice = (state: RootState) => state.filter.selectedPrice;
+
 export const filteredProduct = createSelector(
-  [selectAllProducts, selectSearchTerm, selectCategory, selectSort],
-  (products, searchTerm, category, { sortBy, order }): Product[] => {
+  [
+    selectAllProducts,
+    selectSearchTerm,
+    selectCategory,
+    selectSort,
+    selectPrice,
+  ],
+  (products, searchTerm, category, { sortBy, order }, selectedPrice): Product[] => {
     let productList = [...products];
 
     if (searchTerm) {
@@ -35,7 +43,11 @@ export const filteredProduct = createSelector(
     if (sortBy === 'name' && order === 'desc') {
       productList.sort((a, b) => b.name.localeCompare(a.name));
     }
-    // console.log(productList)
+
+    if (selectedPrice) {
+      productList  = productList.filter((product) => selectedPrice >= product.price);
+    }
+
 
     return category === 'all'
       ? productList
