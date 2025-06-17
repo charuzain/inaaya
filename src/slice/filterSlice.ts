@@ -11,12 +11,16 @@ interface FilterState {
   category: string;
   searchTerm: string;
   sort: Sort;
+  maxPrice: number;
+  selectedPrice: number;
 }
 
 const initialState: FilterState = {
   category: 'all',
   searchTerm: '',
   sort: { sortBy: 'name', order: 'asc' },
+  maxPrice: 0,
+  selectedPrice: 0,
 };
 
 const filterSlice = createSlice({
@@ -35,9 +39,23 @@ const filterSlice = createSlice({
       state.sort.sortBy = sortBy;
       state.sort.order = order;
     },
+
+    setMaxPrice: (state, action: PayloadAction<number>) => {
+      state.maxPrice = action.payload;
+      state.selectedPrice = action.payload;
+    },
+    setSelectedPrice: (state, action: PayloadAction<number>) => {
+      state.selectedPrice = action.payload;
+    },
   },
 });
 
-export const { setCategory, setSearchTerm, setSortTerm } = filterSlice.actions;
+export const {
+  setCategory,
+  setSearchTerm,
+  setSortTerm,
+  setMaxPrice,
+  setSelectedPrice,
+} = filterSlice.actions;
 
 export default filterSlice.reducer;
