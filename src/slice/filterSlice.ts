@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-type Order = 'asc' | 'desc';
+export type Order = 'asc' | 'desc';
 
 type Sort = {
   sortBy: string;
@@ -29,9 +29,15 @@ const filterSlice = createSlice({
     setSearchTerm: (state, action: PayloadAction<string>) => {
       state.searchTerm = action.payload;
     },
+    setSortTerm: (state, action: PayloadAction<Sort>) => {
+      console.log(action.payload);
+      const { sortBy, order } = action.payload;
+      state.sort.sortBy = sortBy;
+      state.sort.order = order;
+    },
   },
 });
 
-export const { setCategory, setSearchTerm } = filterSlice.actions;
+export const { setCategory, setSearchTerm, setSortTerm } = filterSlice.actions;
 
 export default filterSlice.reducer;
