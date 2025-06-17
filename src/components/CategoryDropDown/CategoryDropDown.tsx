@@ -4,7 +4,9 @@ import { setCategory } from '../../slice/filterSlice';
 import { useAppSelector } from '../../app/hooks';
 import type { RootState } from '../../app/store';
 const CategoryDropDown = () => {
+ 
   const category = useAppSelector((state: RootState) => state.filter.category);
+  
   const dispatch = useDispatch();
   return (
     <div>
