@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styles from './SearchBar.module.css';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { setSearchTerm } from '../../slice/filterSlice';
