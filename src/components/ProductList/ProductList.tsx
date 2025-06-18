@@ -7,13 +7,14 @@ import styles from './ProductList.module.css';
 import QuickShop from '../QuickShop/QuickShop';
 import type { RootState } from '../../app/store';
 import { filteredProduct } from '../../selectors/filterSelector';
+import { resetFilter } from '../../slice/filterSlice';
 const ProductList = () => {
-  const {status, selectedProduct } = useAppSelector(
+  const { status, selectedProduct } = useAppSelector(
     (state: RootState) => state.product
   );
 
   const productList = useAppSelector(filteredProduct);
-  console.log(productList);
+  // console.log(productList);
 
   const dispatch = useAppDispatch();
 
@@ -26,6 +27,20 @@ const ProductList = () => {
   }
   if (status === 'failed') {
     return <p>Error...</p>;
+  }
+
+  if (productList.length === 0) {
+    return (
+      <>
+        <p>No products match your current filters</p>
+        <p>
+          Try adjusting your price range, category, or search term to find what
+          you're looking for.
+        </p>
+        <button onClick={()=> dispatch(resetFilter())}>Reset Filter</button>
+       
+      </>
+    );
   }
   return (
     <>

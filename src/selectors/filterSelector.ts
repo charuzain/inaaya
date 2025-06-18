@@ -44,7 +44,10 @@ export const filteredProduct = createSelector(
       productList.sort((a, b) => b.name.localeCompare(a.name));
     }
 
-    if (selectedPrice) {
+    
+console.log(selectedPrice)
+    if (selectedPrice || selectedPrice === 0) {
+      console.log("seel")
       productList  = productList.filter((product) => selectedPrice >= product.price);
     }
 
