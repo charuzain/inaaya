@@ -8,6 +8,7 @@ import CartPage from './pages/CartPage';
 import { useEffect } from 'react';
 import { useAppSelector } from './app/hooks';
 import OrderConfirmationPage from './pages/OrderConfirmationPage/OrderConfirmationPage';
+import ProductDetailPage from './pages/ProductDetailPage/ProductDetailPage';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: '/confirmation',
         element: <OrderConfirmationPage />,
+      },
+      {
+        path: '/products/:productId',
+        element: <ProductDetailPage />,
       },
     ],
   },
