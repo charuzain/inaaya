@@ -9,6 +9,7 @@ import { numItem } from '../selectors/cartSelector';
 
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import OrderSummary from '../components/OrderSummary/OrderSummary';
+import EmptyCart from '../components/EmptyCart/EmptyCart';
 
 const CartPage = () => {
   const { items } = useAppSelector((state) => state.cart);
@@ -17,7 +18,7 @@ const CartPage = () => {
   const dispatch = useAppDispatch();
 
   if (items.length === 0) {
-    return <p>There is not item in your bag !!</p>;
+    return <EmptyCart />;
   }
 
   if (status === 'loading') {
