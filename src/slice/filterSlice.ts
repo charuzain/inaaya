@@ -47,6 +47,12 @@ const filterSlice = createSlice({
     setSelectedPrice: (state, action: PayloadAction<number>) => {
       state.selectedPrice = action.payload;
     },
+    resetFilter: (state) => {
+      state.category = 'all';
+      state.searchTerm = '';
+      state.sort = { sortBy: 'name', order: 'asc' };
+      state.selectedPrice = state.maxPrice;
+    },
   },
 });
 
@@ -56,6 +62,7 @@ export const {
   setSortTerm,
   setMaxPrice,
   setSelectedPrice,
+  resetFilter,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;
