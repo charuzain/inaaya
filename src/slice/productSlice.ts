@@ -46,6 +46,24 @@ const initialState: ProductState = {
   selectedProduct: null,
 };
 
+export const fetchProductById = createAsyncThunk(
+  'fetch/productById',
+  async (productId: number, { rejectWithValue }) => {
+    console.log(productId)
+    try {
+      const res = await fetch(`http://localhost:3000/products/${productId}`);
+      if (!res.ok) {
+        return rejectWithValue('Failed to fetch products');
+      }
+      const data: Product = await res.json();
+      return data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue('Something went wrong...!');
+    }
+  }
+);
+
 export const fetchProducts = createAsyncThunk<
   Product[],
   void,
@@ -157,7 +175,19 @@ export const productSlice = createSlice({
       })
       .addCase(updateProducts.fulfilled, (state) => {
         state.status = 'succeeded';
-      });
+      }).addCase(fetchProductById.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(fetchProductById.fulfilled, (state, action) => {
+        console.log(action.payload)
+        state.status = 'succeeded';
+        state.selectedProduct = action.payload;
+      })
+      .addCase(fetchProductById .rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message ?? 'Something went wrong';
+      })
   },
 });
 export const { setSelectedProduct, clearSelectedProduct } =
