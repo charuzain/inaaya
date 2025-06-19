@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { fetchProducts, setSelectedProduct } from '../../slice/productSlice';
+import { clearQuickViewProduct, clearSelectedProduct, fetchProducts, setQuickViewProduct, setSelectedProduct } from '../../slice/productSlice';
 import { GoHeart, GoHeartFill } from 'react-icons/go';
 
 import styles from './ProductList.module.css';
@@ -8,13 +8,18 @@ import QuickShop from '../QuickShop/QuickShop';
 import type { RootState } from '../../app/store';
 import { filteredProduct } from '../../selectors/filterSelector';
 import NoProductMessage from '../NoProductMessage/NoProductMessage';
+import { useNavigate } from 'react-router';
 const ProductList = () => {
-  const { status, selectedProduct } = useAppSelector(
+
+
+  const { status, quickViewProduct } = useAppSelector(
     (state: RootState) => state.product
   );
+  
 
   const productList = useAppSelector(filteredProduct);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -33,7 +38,14 @@ const ProductList = () => {
   return (
     <>
       {productList.map((product) => (
-        <article key={product.id} className={styles['product-card']}>
+        <article
+          key={product.id}
+          className={styles['product-card']}
+          onClick={() => {
+            dispatch(clearQuickViewProduct());
+            navigate(`/products/${product.id}`);
+          }}
+        >
           <GoHeart className={styles['favourite-icon']} />
           <div className={styles['image-container']}>
             <img
@@ -43,7 +55,10 @@ const ProductList = () => {
             />
             <button
               className={styles['view-btn']}
-              onClick={() => dispatch(setSelectedProduct(product))}
+              onClick={(e) => {
+                e.stopPropagation();
+                dispatch(setQuickViewProduct(product));
+              }}
             >
               Quick View
             </button>
@@ -52,7 +67,7 @@ const ProductList = () => {
           <p className={styles['product-price']}>{`$${product.price}`}</p>
         </article>
       ))}
-      {selectedProduct && <QuickShop />}
+      {quickViewProduct && <QuickShop />}
     </>
   );
 };

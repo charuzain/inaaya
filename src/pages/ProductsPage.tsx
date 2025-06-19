@@ -5,9 +5,10 @@ import SortFilter from '../components/SortFilter/SortFilter';
 import ProductList from '../components/ProductList/ProductList';
 import styles from './ProductsPage.module.css';
 import { useAppSelector } from '../app/hooks';
+import { filteredProduct } from '../selectors/filterSelector';
 
 const ProductsPage = () => {
-  const { products } = useAppSelector((state) => state.product);
+  const productList = useAppSelector(filteredProduct);
 
   return (
     <>
@@ -20,10 +21,11 @@ const ProductsPage = () => {
         <div className={styles['result-section']}>
           <div className={styles['result-header']}>
             <p className={styles['result-count']}>
-              {products.length} product found
+              {productList.length} product found
             </p>
             <SortFilter />
           </div>
+
           <div className={styles['list-wrapper']}>
             <ProductList />
           </div>
