@@ -1,11 +1,17 @@
 {
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Classic White T-Shirt",
       "category": "Tops",
-      "price": 19.99,
-      "sizes": { "s": 10, "m": 15, "l": 8, "xl": 5, "xxl": 3 },
+      "price": 99.99,
+      "sizes": {
+        "s": 0,
+        "m": 0,
+        "l": 0,
+        "xl": 0,
+        "xxl": 0
+      },
       "bestseller": true,
       "new": false,
       "onSale": true,
@@ -14,11 +20,17 @@
       "description": "A classic white t-shirt made from 100% cotton, perfect for everyday wear."
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Casual Black Tank",
       "category": "Tops",
-      "price": 22.99,
-      "sizes": { "s": 12, "m": 14, "l": 10, "xl": 4, "xxl": 2 },
+      "price": 122.99,
+      "sizes": {
+        "s": 0,
+        "m": 0,
+        "l": 0,
+        "xl": 0,
+        "xxl": 0
+      },
       "bestseller": false,
       "new": true,
       "onSale": false,
@@ -27,11 +39,17 @@
       "description": "A sleeveless black tank top, soft and stretchy for all-day comfort."
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Striped Summer Tee",
       "category": "Tops",
-      "price": 25.5,
-      "sizes": { "s": 9, "m": 11, "l": 7, "xl": 3, "xxl": 1 },
+      "price": 95.5,
+      "sizes": {
+        "s": 7,
+        "m": 11,
+        "l": 6,
+        "xl": 0,
+        "xxl": 1
+      },
       "bestseller": true,
       "new": true,
       "onSale": false,
@@ -40,11 +58,17 @@
       "description": "A breezy striped tee that pairs well with jeans or shorts."
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Sleeveless V-Neck",
       "category": "Tops",
-      "price": 18.75,
-      "sizes": { "s": 8, "m": 13, "l": 6, "xl": 2, "xxl": 2 },
+      "price": 98.75,
+      "sizes": {
+        "s": 8,
+        "m": 10,
+        "l": 6,
+        "xl": 2,
+        "xxl": 2
+      },
       "bestseller": false,
       "new": false,
       "onSale": true,
@@ -53,11 +77,17 @@
       "description": "A versatile sleeveless v-neck that layers perfectly under jackets."
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Ribbed Knit Crop",
       "category": "Tops",
-      "price": 21.0,
-      "sizes": { "s": 14, "m": 10, "l": 5, "xl": 1, "xxl": 0 },
+      "price": 81,
+      "sizes": {
+        "s": 14,
+        "m": 10,
+        "l": 5,
+        "xl": 1,
+        "xxl": 0
+      },
       "bestseller": true,
       "new": true,
       "onSale": true,
@@ -66,11 +96,17 @@
       "description": "A ribbed knit crop top, great for casual outings or gym."
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Button-Up Denim Shirt",
       "category": "Tops",
-      "price": 29.99,
-      "sizes": { "s": 6, "m": 10, "l": 9, "xl": 3, "xxl": 1 },
+      "price": 69.99,
+      "sizes": {
+        "s": 3,
+        "m": 8,
+        "l": 9,
+        "xl": 3,
+        "xxl": 0
+      },
       "bestseller": false,
       "new": false,
       "onSale": false,
@@ -79,11 +115,17 @@
       "description": "A timeless denim shirt, stylish and durable."
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Floral Peplum Top",
       "category": "Tops",
-      "price": 26.99,
-      "sizes": { "s": 11, "m": 8, "l": 6, "xl": 2, "xxl": 1 },
+      "price": 56.99,
+      "sizes": {
+        "s": 11,
+        "m": 8,
+        "l": 6,
+        "xl": 2,
+        "xxl": 1
+      },
       "bestseller": false,
       "new": true,
       "onSale": true,
@@ -92,11 +134,17 @@
       "description": "A romantic floral peplum top perfect for dates or brunch."
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "Oversized Graphic Tee",
       "category": "Tops",
       "price": 23.95,
-      "sizes": { "s": 7, "m": 12, "l": 9, "xl": 4, "xxl": 0 },
+      "sizes": {
+        "s": 7,
+        "m": 12,
+        "l": 9,
+        "xl": 4,
+        "xxl": 0
+      },
       "bestseller": true,
       "new": false,
       "onSale": false,
@@ -105,11 +153,17 @@
       "description": "A comfy oversized tee with stylish graphic prints."
     },
     {
-      "id": 9,
+      "id": "9",
       "name": "Lace Trim Cami",
       "category": "Tops",
       "price": 17.8,
-      "sizes": { "s": 10, "m": 9, "l": 4, "xl": 1, "xxl": 0 },
+      "sizes": {
+        "s": 10,
+        "m": 9,
+        "l": 4,
+        "xl": 1,
+        "xxl": 0
+      },
       "bestseller": false,
       "new": false,
       "onSale": true,
@@ -117,13 +171,18 @@
       "image": "/assets/images/tops/9-top.webp",
       "description": "A soft lace-trimmed cami top that adds a touch of elegance."
     },
-
     {
-      "id": 10,
+      "id": "10",
       "name": "Floral Maxi Dress",
       "category": "Dresses",
-      "price": 140.0,
-      "sizes": { "s": 6, "m": 10, "l": 8, "xl": 2, "xxl": 1 },
+      "price": 140,
+      "sizes": {
+        "s": 6,
+        "m": 10,
+        "l": 8,
+        "xl": 2,
+        "xxl": 1
+      },
       "bestseller": true,
       "new": true,
       "onSale": false,
@@ -132,11 +191,17 @@
       "description": "Flowy floral maxi dress perfect for summer outings and vacations."
     },
     {
-      "id": 11,
+      "id": "11",
       "name": "Black Bodycon Dress",
       "category": "Dresses",
-      "price": 180.0,
-      "sizes": { "s": 8, "m": 9, "l": 5, "xl": 3, "xxl": 0 },
+      "price": 180,
+      "sizes": {
+        "s": 5,
+        "m": 9,
+        "l": 0,
+        "xl": 3,
+        "xxl": 0
+      },
       "bestseller": false,
       "new": false,
       "onSale": true,
@@ -145,11 +210,17 @@
       "description": "A chic black bodycon dress with stretch fabric for a flattering fit."
     },
     {
-      "id": 12,
+      "id": "12",
       "name": "Linen Shirt Dress",
       "category": "Dresses",
-      "price": 155.0,
-      "sizes": { "s": 12, "m": 10, "l": 6, "xl": 4, "xxl": 2 },
+      "price": 155,
+      "sizes": {
+        "s": 12,
+        "m": 10,
+        "l": 6,
+        "xl": 4,
+        "xxl": 2
+      },
       "bestseller": true,
       "new": false,
       "onSale": true,
@@ -158,11 +229,17 @@
       "description": "Breathable linen shirt dress, great for casual days or beach walks."
     },
     {
-      "id": 13,
+      "id": "13",
       "name": "Ruffle Wrap Dress",
       "category": "Dresses",
-      "price": 220.0,
-      "sizes": { "s": 7, "m": 11, "l": 5, "xl": 2, "xxl": 1 },
+      "price": 220,
+      "sizes": {
+        "s": 7,
+        "m": 11,
+        "l": 5,
+        "xl": 2,
+        "xxl": 1
+      },
       "bestseller": false,
       "new": true,
       "onSale": false,
@@ -170,13 +247,18 @@
       "image": "/assets/images/dresses/4-dress.webp",
       "description": "Elegant ruffle wrap dress with a flattering waist tie and soft silhouette."
     },
-
     {
-      "id": 14,
+      "id": "14",
       "name": "High-Waisted Jeans",
       "category": "Bottoms",
-      "price": 95.0,
-      "sizes": { "s": 10, "m": 15, "l": 10, "xl": 5, "xxl": 2 },
+      "price": 95,
+      "sizes": {
+        "s": 10,
+        "m": 15,
+        "l": 10,
+        "xl": 0,
+        "xxl": 2
+      },
       "bestseller": true,
       "new": true,
       "onSale": false,
@@ -185,11 +267,17 @@
       "description": "Classic high-waisted jeans with a comfortable fit and stylish cut."
     },
     {
-      "id": 15,
+      "id": "15",
       "name": "Wide-Leg Trousers",
       "category": "Bottoms",
-      "price": 120.0,
-      "sizes": { "s": 9, "m": 12, "l": 8, "xl": 3, "xxl": 1 },
+      "price": 120,
+      "sizes": {
+        "s": 9,
+        "m": 12,
+        "l": 8,
+        "xl": 3,
+        "xxl": 1
+      },
       "bestseller": false,
       "new": false,
       "onSale": true,
@@ -198,11 +286,17 @@
       "description": "Sophisticated wide-leg trousers, great for work or evenings out."
     },
     {
-      "id": 16,
+      "id": "16",
       "name": "Pleated Midi Skirt",
       "category": "Bottoms",
-      "price": 88.0,
-      "sizes": { "s": 10, "m": 14, "l": 9, "xl": 4, "xxl": 2 },
+      "price": 88,
+      "sizes": {
+        "s": 10,
+        "m": 14,
+        "l": 9,
+        "xl": 4,
+        "xxl": 2
+      },
       "bestseller": true,
       "new": false,
       "onSale": true,
@@ -211,11 +305,17 @@
       "description": "Flowy pleated midi skirt in a lightweight, swishy fabric."
     },
     {
-      "id": 17,
+      "id": "17",
       "name": "Denim Shorts",
       "category": "Bottoms",
-      "price": 64.0,
-      "sizes": { "s": 8, "m": 11, "l": 7, "xl": 2, "xxl": 0 },
+      "price": 64,
+      "sizes": {
+        "s": 8,
+        "m": 11,
+        "l": 7,
+        "xl": 2,
+        "xxl": 0
+      },
       "bestseller": false,
       "new": true,
       "onSale": false,
@@ -224,11 +324,17 @@
       "description": "Comfortable and trendy denim shorts perfect for warm weather."
     },
     {
-      "id": 18,
+      "id": "18",
       "name": "Tailored Pants",
       "category": "Bottoms",
-      "price": 135.0,
-      "sizes": { "s": 5, "m": 10, "l": 6, "xl": 3, "xxl": 1 },
+      "price": 135,
+      "sizes": {
+        "s": 5,
+        "m": 10,
+        "l": 6,
+        "xl": 3,
+        "xxl": 1
+      },
       "bestseller": true,
       "new": false,
       "onSale": false,
@@ -237,11 +343,17 @@
       "description": "Elegant tailored pants for a clean, structured look."
     },
     {
-      "id": 19,
+      "id": "19",
       "name": "Paperbag Waist Pants",
       "category": "Bottoms",
-      "price": 110.0,
-      "sizes": { "s": 6, "m": 9, "l": 5, "xl": 2, "xxl": 0 },
+      "price": 110,
+      "sizes": {
+        "s": 6,
+        "m": 9,
+        "l": 5,
+        "xl": 2,
+        "xxl": 0
+      },
       "bestseller": false,
       "new": true,
       "onSale": true,
@@ -250,11 +362,17 @@
       "description": "High-waisted paperbag pants with belt detail for chic comfort."
     },
     {
-      "id": 20,
+      "id": "20",
       "name": "Pleather Mini Skirt",
       "category": "Bottoms",
-      "price": 89.0,
-      "sizes": { "s": 7, "m": 8, "l": 4, "xl": 2, "xxl": 0 },
+      "price": 89,
+      "sizes": {
+        "s": 7,
+        "m": 8,
+        "l": 4,
+        "xl": 2,
+        "xxl": 0
+      },
       "bestseller": true,
       "new": true,
       "onSale": false,
@@ -262,13 +380,18 @@
       "image": "/assets/images/bottom/7-bottom.webp",
       "description": "Edgy pleather mini skirt that makes a bold statement."
     },
-
     {
-      "id": 21,
+      "id": "21",
       "name": "Classic Denim Jacket",
       "category": "Jackets",
-      "price": 150.0,
-      "sizes": { "s": 10, "m": 12, "l": 8, "xl": 3, "xxl": 1 },
+      "price": 150,
+      "sizes": {
+        "s": 10,
+        "m": 12,
+        "l": 8,
+        "xl": 3,
+        "xxl": 1
+      },
       "bestseller": true,
       "new": false,
       "onSale": false,
@@ -277,11 +400,17 @@
       "description": "A timeless denim jacket that never goes out of style."
     },
     {
-      "id": 22,
+      "id": "22",
       "name": "Cropped Leather Jacket",
       "category": "Jackets",
-      "price": 275.0,
-      "sizes": { "s": 6, "m": 9, "l": 6, "xl": 2, "xxl": 0 },
+      "price": 275,
+      "sizes": {
+        "s": 6,
+        "m": 9,
+        "l": 6,
+        "xl": 2,
+        "xxl": 0
+      },
       "bestseller": true,
       "new": true,
       "onSale": false,
@@ -290,11 +419,17 @@
       "description": "Cropped biker-style jacket with zipper detailing."
     },
     {
-      "id": 23,
+      "id": "23",
       "name": "Oversized Wool Coat",
       "category": "Jackets",
-      "price": 299.0,
-      "sizes": { "s": 8, "m": 10, "l": 5, "xl": 2, "xxl": 1 },
+      "price": 299,
+      "sizes": {
+        "s": 8,
+        "m": 10,
+        "l": 5,
+        "xl": 2,
+        "xxl": 0
+      },
       "bestseller": false,
       "new": true,
       "onSale": false,
@@ -303,11 +438,17 @@
       "description": "Cozy oversized coat for ultimate winter layering."
     },
     {
-      "id": 24,
+      "id": "24",
       "name": "Quilted Bomber Jacket",
       "category": "Jackets",
-      "price": 165.0,
-      "sizes": { "s": 7, "m": 10, "l": 6, "xl": 3, "xxl": 0 },
+      "price": 165,
+      "sizes": {
+        "s": 7,
+        "m": 10,
+        "l": 6,
+        "xl": 3,
+        "xxl": 0
+      },
       "bestseller": false,
       "new": false,
       "onSale": true,
@@ -316,11 +457,17 @@
       "description": "Lightweight quilted bomber for in-between seasons."
     },
     {
-      "id": 25,
+      "id": "25",
       "name": "Trench Coat",
       "category": "Jackets",
-      "price": 245.0,
-      "sizes": { "s": 6, "m": 8, "l": 4, "xl": 2, "xxl": 0 },
+      "price": 245,
+      "sizes": {
+        "s": 6,
+        "m": 3,
+        "l": 4,
+        "xl": 2,
+        "xxl": 0
+      },
       "bestseller": true,
       "new": false,
       "onSale": false,
@@ -329,11 +476,17 @@
       "description": "A classic trench coat with button front and waist belt."
     },
     {
-      "id": 26,
+      "id": "26",
       "name": "Puffer Jacket",
       "category": "Jackets",
-      "price": 180.0,
-      "sizes": { "s": 9, "m": 10, "l": 5, "xl": 3, "xxl": 1 },
+      "price": 180,
+      "sizes": {
+        "s": 9,
+        "m": 10,
+        "l": 5,
+        "xl": 3,
+        "xxl": -2
+      },
       "bestseller": false,
       "new": true,
       "onSale": true,
