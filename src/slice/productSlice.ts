@@ -37,6 +37,7 @@ export interface ProductState {
   status: Status;
   error: null | string;
   selectedProduct: null | Product;
+  quickViewProduct: null | Product;
 }
 
 const initialState: ProductState = {
@@ -44,6 +45,7 @@ const initialState: ProductState = {
   status: 'idle',
   error: null,
   selectedProduct: null,
+  quickViewProduct: null,
 };
 
 export const fetchProductById = createAsyncThunk(
@@ -150,6 +152,12 @@ export const productSlice = createSlice({
     clearSelectedProduct: (state) => {
       state.selectedProduct = null;
     },
+    setQuickViewProduct: (state, action: PayloadAction<Product>) => {
+      state.quickViewProduct = action.payload;
+    },
+    clearQuickViewProduct: (state) => {
+      state.quickViewProduct = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -175,21 +183,26 @@ export const productSlice = createSlice({
       })
       .addCase(updateProducts.fulfilled, (state) => {
         state.status = 'succeeded';
-      }).addCase(fetchProductById.pending, (state) => {
+      })
+      .addCase(fetchProductById.pending, (state) => {
         state.status = 'loading';
         state.error = null;
       })
       .addCase(fetchProductById.fulfilled, (state, action) => {
-        console.log(action.payload)
+        console.log(action.payload);
         state.status = 'succeeded';
         state.selectedProduct = action.payload;
       })
-      .addCase(fetchProductById .rejected, (state, action) => {
+      .addCase(fetchProductById.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message ?? 'Something went wrong';
-      })
+      });
   },
 });
-export const { setSelectedProduct, clearSelectedProduct } =
-  productSlice.actions;
+export const {
+  setSelectedProduct,
+  clearSelectedProduct,
+  setQuickViewProduct,
+  clearQuickViewProduct,
+} = productSlice.actions;
 export default productSlice.reducer;
