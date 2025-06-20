@@ -1,7 +1,9 @@
 .outlet-wrapper {
-  border: 2px solid blue;
+  border: 2px solid purple;
 
   max-width: 1280px;
-  padding: 2rem;
+  min-height: 90vh;
+  height: 100%;
+  /* padding: 2rem; */
   margin: 2rem auto;
 }
