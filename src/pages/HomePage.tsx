@@ -1,6 +1,9 @@
 import styles from './HomePage.module.css';
-import heroImage from './../assets/about3.png';
+import heroImage from './../assets/images/about3.png';
 import { MdArrowRightAlt } from 'react-icons/md';
+import Category from '../components/Category/Category';
+import ProductSlider from '../components/ProductSlider/ProductSlider';
+import SloganMarquee from '../components/SloganMarquee/SloganMarquee';
 
 const HomePage = () => {
   return (
@@ -29,11 +32,15 @@ const HomePage = () => {
       </div>
 
       <section className={styles['category-section']}>
-        <h1>Category</h1>
+        <Category />
+      </section>
+
+      <section className={styles['slogan-section']}>
+        <SloganMarquee />
       </section>
 
       <section className={styles['new-section']}>
-        <h1>New Product</h1>
+        <ProductSlider />
       </section>
     </main>
   );
