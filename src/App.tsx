@@ -3,12 +3,13 @@ import AppLayout from './components/AppLayout';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
-import AboutPage from './pages/AboutPage';
+import AboutPage from './pages/AboutPage/AboutPage';
 import CartPage from './pages/CartPage';
 import { useEffect } from 'react';
 import { useAppSelector } from './app/hooks';
 import OrderConfirmationPage from './pages/OrderConfirmationPage/OrderConfirmationPage';
 import ProductDetailPage from './pages/ProductDetailPage/ProductDetailPage';
+import FavoritePage from './pages/FavoritePage/FavoritePage';
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: '/products/:productId',
         element: <ProductDetailPage />,
+      },
+      {
+        path: '/favorite',
+        element: <FavoritePage />,
       },
     ],
   },
