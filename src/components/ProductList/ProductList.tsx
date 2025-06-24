@@ -1,6 +1,10 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { clearQuickViewProduct, clearSelectedProduct, fetchProducts, setQuickViewProduct, setSelectedProduct } from '../../slice/productSlice';
+import {
+  clearQuickViewProduct,
+  fetchProducts,
+  setQuickViewProduct,
+} from '../../slice/productSlice';
 import { GoHeart, GoHeartFill } from 'react-icons/go';
 
 import styles from './ProductList.module.css';
@@ -9,13 +13,19 @@ import type { RootState } from '../../app/store';
 import { filteredProduct } from '../../selectors/filterSelector';
 import NoProductMessage from '../NoProductMessage/NoProductMessage';
 import { useNavigate } from 'react-router';
+import { addToWishlist, removeFromWishList } from '../../slice/favoriteSlice';
+import type { Root } from 'react-dom/client';
 const ProductList = () => {
-
-
   const { status, quickViewProduct } = useAppSelector(
     (state: RootState) => state.product
   );
-  
+
+  const favorites = useAppSelector(
+    (state: RootState) => state.favorite.favoriteProducts
+  );
+
+  const isFavorite = (id: number): boolean =>
+    favorites.some((favoriteProduct) => favoriteProduct.id === id);
 
   const productList = useAppSelector(filteredProduct);
   const dispatch = useAppDispatch();
@@ -46,7 +56,23 @@ const ProductList = () => {
             navigate(`/products/${product.id}`);
           }}
         >
-          <GoHeart className={styles['favourite-icon']} />
+          {isFavorite(product.id) ? (
+            <GoHeartFill
+              className={styles['favourite-icon']}
+              onClick={(e) => {
+                e.stopPropagation();
+                dispatch(removeFromWishList(product.id));
+              }}
+            />
+          ) : (
+            <GoHeart
+              className={styles['favourite-icon']}
+              onClick={(e) => {
+                e.stopPropagation();
+                dispatch(addToWishlist(product));
+              }}
+            />
+          )}
           <div className={styles['image-container']}>
             <img
               src={`/src${product.image} `}
