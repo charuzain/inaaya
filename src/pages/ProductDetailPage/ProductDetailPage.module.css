@@ -38,3 +38,24 @@
 
 }
 
+
+
+.breadcrumb-container{
+  /* background: #f7eee1; */
+  /* width: 100%; */
+  /* padding-top:50px; */
+  min-height: 5rem;
+  display: flex;
+  align-items: center;
+  color: red;
+  padding-left: 1rem;
+}
+
+.breadcrumb-container a {
+  color: pink;
+  margin-right: 0.2rem;
+  transition: all 0.3s linear;;
+}
+.breadcrumb-container a:hover {
+  color: black;
+}
