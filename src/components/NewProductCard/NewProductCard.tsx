@@ -2,10 +2,18 @@ import React from 'react';
 import type { Product } from '../../slice/productSlice';
 import styles from './NewProductCard.module.css';
 import { GoHeart, GoHeartFill } from 'react-icons/go';
+import { useNavigate } from 'react-router';
 
 const NewProductCard = ({ product }) => {
+  const navigate = useNavigate();
+
   return (
-    <div className={styles['product-card']}>
+    <div
+      className={styles['product-card']}
+      onClick={() => {
+        navigate(`/products/${product.id}`);
+      }}
+    >
       <div className={styles['product-card-image-wrapper']}>
         <img
           src={`/src/${product.image}`}
