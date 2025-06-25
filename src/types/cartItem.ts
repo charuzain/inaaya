@@ -8,7 +8,7 @@ export type Size = {
 
 export type Sizekey = keyof Size;
 
-export interface CartItem {
+export interface CartItemType {
   id: number;
   name: string;
   price: number;

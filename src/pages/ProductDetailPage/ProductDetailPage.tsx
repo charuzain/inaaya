@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { fetchProductById } from '../../slice/productSlice';
 import type { RootState } from '../../app/store';
 import styles from './ProductDetailPage.module.css';
-import type { CartItem, Sizekey } from '../../types/cartItem';
+import type { CartItemType, Sizekey } from '../../types/cartItem';
 import SizeSelector from '../../components/SizeSelector/SizeSelector';
 import QuantityButton from '../../components/QuantityButton/QuantityButton';
 import AddToCart from '../../components/AddToCart/AddToCart';
@@ -26,7 +26,7 @@ const ProductDetailPage = () => {
 
   const stock = selectedSize ? selectedProduct?.sizes[selectedSize] ?? 0 : 0;
 
-  const cartItems: CartItem | undefined = useAppSelector((state) =>
+  const cartItems: CartItemType | undefined = useAppSelector((state) =>
     state.cart.items.find(
       (item) => item.id === selectedProduct?.id && item.size === selectedSize
     )
