@@ -9,6 +9,8 @@ import {
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import type { CartItemType } from '../../types/cartItem';
 
+import { addToSaveForLater } from '../../slice/savedForLaterSlice';
+
 type CartItemProps = {
   product: CartItemType;
 };
@@ -37,7 +39,15 @@ const CartItem = ({ product }: CartItemProps) => {
           </p>
         </div>
         <div className={styles['item-action']}>
-          <button className={styles['action-btn']}>Save for Later</button>
+          <button
+            className={styles['action-btn']}
+            onClick={() => {
+              dispatch(addToSaveForLater(product));
+              dispatch(removeFromCart({ id: product.id, size: product.size }));
+            }}
+          >
+            Save for Later
+          </button>
         </div>
       </div>
       {/* buttons */}
