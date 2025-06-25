@@ -1,8 +1,8 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { type CartItem } from '../types/cartItem';
+import { type CartItemType } from '../types/cartItem';
 
 export interface CartState {
-  items: CartItem[];
+  items: CartItemType[];
 }
 
 const initialState: CartState = {
@@ -13,7 +13,7 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart: (state, action: PayloadAction<CartItem>) => {
+    addToCart: (state, action: PayloadAction<CartItemType>) => {
       // find if item added alreay exist in the array and also check the size , if it exists increase the quantity
       const existingItem = state.items.find(
         (item) =>

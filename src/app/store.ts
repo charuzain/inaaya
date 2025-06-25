@@ -3,6 +3,8 @@ import themeReducer from '../slice/themeSlice';
 import productReducer from '../slice/productSlice';
 import cartReducer from '../slice/cartSlice';
 import filterReducer from '../slice/filterSlice';
+import favoriteReducer from '../slice/favoriteSlice';
+import savedForLaterSlice from '../slice/savedForLaterSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +12,8 @@ export const store = configureStore({
     product: productReducer,
     cart: cartReducer,
     filter: filterReducer,
+    favorite: favoriteReducer,
+    savedProduct: savedForLaterSlice,
   },
 });
 
