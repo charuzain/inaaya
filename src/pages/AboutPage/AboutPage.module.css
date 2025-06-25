@@ -1,0 +1,16 @@
+.about-sections-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  margin-bottom: 50px;
+  padding: 2rem 1rem;
+
+}
+
+
+.about-section-container {
+  max-width: 1200px; 
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
