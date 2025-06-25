@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router';
 import styles from './AddToCartModal.module.css';
-import type { Product } from '../../slice/productSlice';
 import { useAppSelector } from '../../app/hooks';
 import type { Sizekey } from '../../types/cartItem';
 
